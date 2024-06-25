@@ -1,7 +1,10 @@
 const express = require('express');
+const colors = require('colors');
 const dotenv = require('dotenv').config();
-
 const { errorHandler } = require('./middleware/errorMiddleware.js');
+const connectDB = require('./config/db.js');
+
+connectDB();
 
 const port = process.env.PORT || 5000;
 //import userRoutes from './routes/goalRoutes.js';
