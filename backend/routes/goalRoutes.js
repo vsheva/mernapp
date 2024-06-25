@@ -1,17 +1,14 @@
-import express from 'express';
+const express = require('express');
 const router = express.Router();
+const { getGoals, setGoal, updateGoal, deleteGoal } = require('../controllers/goalController.js');
 
-router.get('/', (req, res) => res.status(200).json({ message: 'Server is ready' }));
-// router.post('/', (req, res) => res.status(200).json({ message: 'Server is ready' }));
-// router.get('/', (req, res) => res.status(200).json({ message: 'Server is ready' }));
-// router.get('/', (req, res) => res.status(200).json({ message: 'Server is ready' }));
+// router.get('/', getGoals);
+// router.post('/', setGoal);
+// router.put('/:id', updateGoal);
+// router.delete('/:id', deleteGoal);
 
+router.route('/').get(getGoals).post(setGoal);
+router.route('/:id').put(updateGoal).delete(deleteGoal);
 
 module.exports = router;
 
-
-
-// import { authUser } from '../controllers/userController.js';
-
-// router.post('/auth', authUser);
-// export default router;

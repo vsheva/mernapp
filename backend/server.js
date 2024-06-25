@@ -1,18 +1,18 @@
-// import express from 'express';
-// import dotenv from 'dotenv';
-// dotenv.config();
+const express = require('express');
+const dotenv = require('dotenv').config();
 
-// const port = process.env.PORT || 5000;
-// import userRoutes from './routes/goalRoutes.js';
+const { errorHandler } = require('./middleware/errorMiddleware.js');
 
-// const app = express();
+const port = process.env.PORT || 5000;
+//import userRoutes from './routes/goalRoutes.js';
 
-// app.use('/api/goals', require('./routes/goalRoutes.js'));
-// //app.get('/', (req, res) => res.send('Server is ready'));
+const app = express();
 
-// app.listen(port, () => console.log(`Server runs on port ${port}`));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
+app.use('/api/goals', require('./routes/goalRoutes.js'));
 
+app.use(errorHandler);
 
-
-console.log("Hello")
+app.listen(port, () => console.log(`Server runs on port ${port}`));
