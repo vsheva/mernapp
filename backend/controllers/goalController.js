@@ -43,14 +43,16 @@ const updateGoal = asyncHandler(async (req, res) => {
 //Delete goal
 //@route DELETE /api/goals/:id
 const deleteGoal = asyncHandler(async (req, res) => {
-  const goal = await Goal.findById(req.params.id);//!
+  const goal = await Goal.findById(req.params.id);
 
   if (!goal) {
     res.status(400);
     throw new Error('Goal not found');
   }
 
-   await goal.remove();//!
+  console.log('goal', goal);
+
+  await goal.deleteOne();//! .remove() depricated
 
   res.status(200).json({ id: req.params.id });
 });
