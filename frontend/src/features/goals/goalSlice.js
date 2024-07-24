@@ -158,6 +158,19 @@ export const goalSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+      })
+      .addCase(deleteGoal.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(deleteGoal.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.goals = state.goals.filter(goal => goal._id !== action.payload.id);
+      })
+      .addCase(deleteGoal.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       });
   },
 });
